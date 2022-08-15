@@ -10,16 +10,22 @@ const port: string | number = process.env.PORT || 8000;
 
 // define the first route of app
 app.get("/", (req: Request, res: Response) => {
-  //send hello world
-  res.send(
-    "Welcome to API Restful Express + TS + Nodemon + Jest + Swagger + Mongoose"
-  );
+  //send
+  res.send({ message: "Goodbye, world" });
 });
 
 // define the first route of app
-app.get("/hello", (req: Request, res: Response) => {
+app.get("/saludo", (req: Request, res: Response) => {
   //send hello world
-  res.send("Welcome to GET Route: Hello world");
+  let name = req.query.name;
+
+  if (name != "") {
+    res.send({ message: `Hola ${name}` });
+  } else {
+    res.send({ message: "Anónimo" });
+  }
+
+  //http://localhost:8000/saludo?name=Ana
 });
 
 // execute app and listen request to port
